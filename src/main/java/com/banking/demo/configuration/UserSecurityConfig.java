@@ -52,6 +52,9 @@ public class UserSecurityConfig {
                 .logout(logout -> logout
                         .permitAll()
                         .logoutSuccessUrl("/")
+                )
+                .exceptionHandling(configurer ->
+                        configurer.accessDeniedPage("/access-denied")
                 );
 
         return httpSecurity.build();
