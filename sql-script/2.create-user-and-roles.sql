@@ -25,8 +25,8 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`username`,`password`,`enabled`)
 VALUES
-('admin','{noop}nimda',1);
--- ('admin','$2a$12$oMa0E/XXPF5OQCIdUC9fpOcRBFriyNZq7YF7svWc71n7R4IPSouQK',1);
+('admin','$2a$12$oMa0E/XXPF5OQCIdUC9fpOcRBFriyNZq7YF7svWc71n7R4IPSouQK',1),
+('manager','$2a$12$oMa0E/XXPF5OQCIdUC9fpOcRBFriyNZq7YF7svWc71n7R4IPSouQK',1);
 
 --
 -- Table structure for table `role`
@@ -81,6 +81,7 @@ SET foreign_key_checks = 1;
 INSERT INTO `users_roles` (user_id,role_id)
 VALUES
 (1, 1),
-(1, 2)
+(1, 2),
+(2, 2)
 
 
