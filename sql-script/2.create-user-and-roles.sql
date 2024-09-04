@@ -26,7 +26,12 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`username`,`password`,`enabled`)
 VALUES
 ('admin','$2a$12$oMa0E/XXPF5OQCIdUC9fpOcRBFriyNZq7YF7svWc71n7R4IPSouQK',1),
-('manager','$2a$12$oMa0E/XXPF5OQCIdUC9fpOcRBFriyNZq7YF7svWc71n7R4IPSouQK',1);
+('manager','$2a$12$oMa0E/XXPF5OQCIdUC9fpOcRBFriyNZq7YF7svWc71n7R4IPSouQK',1),
+('testDelete1','$2a$12$oMa0E/XXPF5OQCIdUC9fpOcRBFriyNZq7YF7svWc71n7R4IPSouQK',1),
+('testDelete2','$2a$12$oMa0E/XXPF5OQCIdUC9fpOcRBFriyNZq7YF7svWc71n7R4IPSouQK',1),
+('testDelete3','$2a$12$oMa0E/XXPF5OQCIdUC9fpOcRBFriyNZq7YF7svWc71n7R4IPSouQK',1),
+('testDelete4','$2a$12$oMa0E/XXPF5OQCIdUC9fpOcRBFriyNZq7YF7svWc71n7R4IPSouQK',1),
+('testDelete5','$2a$12$oMa0E/XXPF5OQCIdUC9fpOcRBFriyNZq7YF7svWc71n7R4IPSouQK',1);
 
 --
 -- Table structure for table `role`
@@ -82,6 +87,11 @@ INSERT INTO `users_roles` (user_id,role_id)
 VALUES
 (1, 1),
 (1, 2),
-(2, 2)
+(2, 1),
+(3, 1),
+(4, 1),
+(5, 1),
+(6, 1),
+(7, 1)
 
 

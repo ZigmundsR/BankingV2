@@ -36,4 +36,32 @@ public class UserDAOImpl implements UserDAO{
         }
         return theUser;
     }
+
+    @Override
+    public List<User> findAll() {
+        TypedQuery<User> theQuery = entityManager.createQuery("from User", User.class);
+
+        return theQuery.getResultList();
+    }
+
+    @Override
+    public List<User> findAll(String search) {
+        TypedQuery<User> theQuery = entityManager.createQuery("SELECT u FROM User u WHERE u.userName LIKE :search", User.class);
+        theQuery.setParameter("search", "%" + search + "%");
+
+        return theQuery.getResultList();
+    }
+
+    @Override
+    @Transactional
+    public void save(User theUser) {
+        entityManager.merge(theUser);
+    }
+
+    @Override
+    @Transactional
+    public void deleteById(int theId) {
+        User user = entityManager.find(User.class, theId);
+        entityManager.remove(user);
+    }
 }
