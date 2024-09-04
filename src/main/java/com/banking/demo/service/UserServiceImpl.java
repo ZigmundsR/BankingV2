@@ -1,9 +1,12 @@
 package com.banking.demo.service;
 
 
+import com.banking.demo.controller.HomePageController;
 import com.banking.demo.dao.UserDAO;
 import com.banking.demo.entity.Role;
 import com.banking.demo.entity.User;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -16,6 +19,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
+    private static Logger logger = LogManager.getLogger(HomePageController.class);
 
     private UserDAO userDao;
 
@@ -26,6 +30,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+        logger.info("searching for username: " + userName);
         User user = userDao.findByUserName(userName);
         if (user == null) {
             throw new UsernameNotFoundException("Invalid username or password.");
