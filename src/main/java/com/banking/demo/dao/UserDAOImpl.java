@@ -14,7 +14,7 @@ import java.util.List;
 
 @Repository
 public class UserDAOImpl implements UserDAO{
-    private static Logger logger = LogManager.getLogger(HomePageController.class);
+    private static Logger logger = LogManager.getLogger(UserDAOImpl.class);
     private EntityManager entityManager;
 
     @Autowired

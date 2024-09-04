@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
-    private static Logger logger = LogManager.getLogger(HomePageController.class);
+    private static Logger logger = LogManager.getLogger(UserServiceImpl.class);
 
     private UserDAO userDao;
 
