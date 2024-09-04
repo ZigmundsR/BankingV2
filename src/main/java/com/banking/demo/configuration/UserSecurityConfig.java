@@ -16,6 +16,7 @@ import javax.sql.DataSource;
 public class UserSecurityConfig {
     private String ADMIN = "ADMIN";
     private String MANAGER = "MANAGER";
+    private String CUSTOMER = "CUSTOMER";
 
     @Bean
     public UserDetailsManager userDetailsManager(DataSource dataSource){
@@ -42,6 +43,8 @@ public class UserSecurityConfig {
                         authorize
                                 .requestMatchers("/").permitAll()
                                 .requestMatchers("/users/**").hasRole(ADMIN)
+                                .requestMatchers("/customers/**").hasRole(MANAGER)
+                                .requestMatchers("/accounts/**").hasRole(CUSTOMER)
                                 .anyRequest().authenticated()
                 )
                 .formLogin(form -> form

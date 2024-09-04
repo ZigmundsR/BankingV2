@@ -4,16 +4,16 @@ SET foreign_key_checks = 0;
 SET FOREIGN_KEY_CHECKS = 0;
 
 --
--- Table structure for table `employee`
+-- Table structure for table `customer`
 --
 
 DROP TABLE IF EXISTS `customer`;
 
 CREATE TABLE `customer` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `first_name` varchar(45) DEFAULT NULL,
-  `last_name` varchar(45) DEFAULT NULL,
-  `email` varchar(45) DEFAULT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(40) DEFAULT NULL,
+  `last_name` varchar(40) DEFAULT NULL,
+  `email` varchar(60) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
@@ -29,7 +29,8 @@ VALUES
 ('testDelete2','testDelete2',"testDelete2@test.com"),
 ('testDelete3','testDelete3',"testDelete3@test.com"),
 ('testDelete4','testDelete4',"testDelete4@test.com"),
-('testDelete5','testDelete5',"testDelete5@test.com");
+('testDelete5','testDelete5',"testDelete5@test.com"),
+('Zigmunds','Rieksts',"zigmundsrieksts@gmail.com");
 
 --
 -- Table structure for table `users_customer`
@@ -38,8 +39,8 @@ VALUES
 DROP TABLE IF EXISTS `users_customer`;
 
 CREATE TABLE `users_customer` (
-  `user_id` int(11) NOT NULL,
-  `customer_id` int(11) NOT NULL,
+  `user_id` int NOT NULL,
+  `customer_id` int NOT NULL,
 
   PRIMARY KEY (`user_id`),
 
@@ -49,7 +50,7 @@ CREATE TABLE `users_customer` (
   REFERENCES `user` (`id`)
   ON DELETE NO ACTION ON UPDATE NO ACTION,
 
-  CONSTRAINT `FK_Customer` FOREIGN KEY (`customer_id`)
+  CONSTRAINT `FK_CUSTOMER` FOREIGN KEY (`customer_id`)
   REFERENCES `customer` (`id`)
   ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -70,4 +71,5 @@ VALUES
 (4, 4),
 (5, 5),
 (6, 6),
-(7, 7)
+(7, 7),
+(8, 8)

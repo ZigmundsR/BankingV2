@@ -10,7 +10,7 @@ SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS `user`;
 
 CREATE TABLE `user` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `username` varchar(50) NOT NULL,
   `password` char(80) NOT NULL,
   `enabled` tinyint NOT NULL,
@@ -31,7 +31,8 @@ VALUES
 ('testDelete2','$2a$12$oMa0E/XXPF5OQCIdUC9fpOcRBFriyNZq7YF7svWc71n7R4IPSouQK',1),
 ('testDelete3','$2a$12$oMa0E/XXPF5OQCIdUC9fpOcRBFriyNZq7YF7svWc71n7R4IPSouQK',1),
 ('testDelete4','$2a$12$oMa0E/XXPF5OQCIdUC9fpOcRBFriyNZq7YF7svWc71n7R4IPSouQK',1),
-('testDelete5','$2a$12$oMa0E/XXPF5OQCIdUC9fpOcRBFriyNZq7YF7svWc71n7R4IPSouQK',1);
+('testDelete5','$2a$12$oMa0E/XXPF5OQCIdUC9fpOcRBFriyNZq7YF7svWc71n7R4IPSouQK',1),
+('zigmunds','$2a$12$oMa0E/XXPF5OQCIdUC9fpOcRBFriyNZq7YF7svWc71n7R4IPSouQK',1);
 
 --
 -- Table structure for table `role`
@@ -40,7 +41,7 @@ VALUES
 DROP TABLE IF EXISTS `role`;
 
 CREATE TABLE `role` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
@@ -51,7 +52,9 @@ CREATE TABLE `role` (
 
 INSERT INTO `role` (name)
 VALUES
-('ROLE_MANAGER'),('ROLE_ADMIN');
+('ROLE_MANAGER'),
+('ROLE_ADMIN'),
+('ROLE_CUSTOMER');
 
 --
 -- Table structure for table `users_roles`
@@ -60,8 +63,8 @@ VALUES
 DROP TABLE IF EXISTS `users_roles`;
 
 CREATE TABLE `users_roles` (
-  `user_id` int(11) NOT NULL,
-  `role_id` int(11) NOT NULL,
+  `user_id` int NOT NULL,
+  `role_id` int NOT NULL,
 
   PRIMARY KEY (`user_id`,`role_id`),
 
@@ -87,11 +90,13 @@ INSERT INTO `users_roles` (user_id,role_id)
 VALUES
 (1, 1),
 (1, 2),
+(1, 3),
 (2, 1),
-(3, 1),
-(4, 1),
-(5, 1),
-(6, 1),
-(7, 1)
-
+(2, 3),
+(3, 3),
+(4, 3),
+(5, 3),
+(6, 3),
+(7, 3),
+(8, 3)
 

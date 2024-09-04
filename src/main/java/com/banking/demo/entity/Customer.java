@@ -9,8 +9,11 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+
+import java.util.List;
 
 @Entity
 @Table(name = "customer")
@@ -35,6 +38,11 @@ public class Customer {
             joinColumns = @JoinColumn(name = "customer_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id"))
     private User user;
+
+    @OneToMany(mappedBy = "accounts",
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
+    private List<Account> accounts;
 
     public Customer() {
     }
@@ -77,5 +85,13 @@ public class Customer {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public List<Account> getAccounts() {
+        return accounts;
+    }
+
+    public void setAccounts(List<Account> accounts) {
+        this.accounts = accounts;
     }
 }
