@@ -39,7 +39,7 @@ public class Customer {
             inverseJoinColumns = @JoinColumn(name = "user_id"))
     private User user;
 
-    @OneToMany(mappedBy = "accounts",
+    @OneToMany(mappedBy = "customer",
             fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
     private List<Account> accounts;

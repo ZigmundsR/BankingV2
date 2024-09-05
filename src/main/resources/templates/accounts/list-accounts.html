@@ -12,7 +12,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-    <title>Customer Directory</title>
+    <title>Account Directory</title>
 </head>
 
 <body>
@@ -46,60 +46,72 @@
 
 <div class="container">
 
-    <h3>Customer Directory</h3>
+    <h3>Account Directory</h3>
     <hr>
 
     <div class="row">
         <!-- Add a button -->
         <div class="col-md-6">
-            <a th:href="@{/customers/register}"
+            <a th:href="@{/accounts/{customerId}/add(customerId=${customerId})}"
                class="btn btn-primary btn-sm mb-3">
-                Add Customer
+                Add Account
             </a>
-        </div>
-        <div class="col-md-6">
-            <form th:action="@{/customers/list}" method="get" class="d-flex justify-content-end">
-                <input type="text" th:name="search" class="form-control me-2" placeholder="Search..." aria-label="Search">
-                <button type="submit" class="btn btn-outline-success">Search</button>
-            </form>
         </div>
     </div>
 
     <table class="table table-bordered table-striped">
         <thead class="table-dark">
         <tr>
-            <th>First name</th>
-            <th>Last name</th>
-            <th>Email</th>
-            <th>Action</th>
+            <th>Iban</th>
+            <th>Balance</th>
+            <th>Actions</th>
         </tr>
         </thead>
 
         <tbody>
-        <tr th:each="tempCustomer : ${customers}">
+        <tr th:each="tempAccount : ${accounts}">
 
-            <td th:text="${tempCustomer.firstName}" />
-            <td th:text="${tempCustomer.lastName}" />
-            <td th:text="${tempCustomer.email}" />
+            <td th:text="${tempAccount.iban}" />
+            <td th:text="${tempAccount.balance}" />
 
             <td>
                 <div class="row">
 
-                    <div class="col-small">
-                        <!-- Add "update" button/link -->
-                        <form action="#" th:action="@{/customers/update}" method="POST">
+                    <div class="col-auto">
+                        <form action="#" th:action="@{/accounts/deposit}" method="POST">
+                            <input type="number" name="amount" placeholder="Enter amount" class="form-control me-2" style="float:left; width: 140px;" required />
+                            <input type="hidden" name="accountId" th:value="${tempAccount.id}" />
+                            <button type="submit" class="btn btn-info btn-sm form-control me-2" style="float:left;">Deposit</button>
+                        </form>
+                    </div>
 
-                            <input type="hidden" name="customerId" th:value="${tempCustomer.id}" />
-                            <button type="submit" class="btn btn-info btn-sm me-1" style="float:left;">Update</button>
+                    <div class="col-auto">
+                        <form action="#" th:action="@{/accounts/withdraw}" method="POST">
+
+                            <input type="number" name="amount" placeholder="Enter amount" class="form-control me-2" style="float:left; width: 140px;" required />
+                            <input type="hidden" name="accountId" th:value="${tempAccount.id}" />
+                            <button type="submit" class="btn btn-info btn-sm form-control me-2" style="float:left;">Withdraw</button>
 
                         </form>
+                    </div>
 
-                        <!-- Add "delete" button/link -->
-                        <form action="#" th:action="@{/customers/delete}" method="POST">
+                    <div class="col-auto">
+                        <form action="#" th:action="@{/accounts/transfer}" method="POST">
 
-                            <input type="hidden" name="customerId" th:value="${tempCustomer.id}" />
+                            <input type="number" name="amount" placeholder="Enter amount" class="form-control me-2" style="float:left; width: 140px;" required />
+                            <input type="text" name="TransferIBAN" placeholder="Enter iban" class="form-control me-2" style="float:left; width: 140px;" required />
+                            <input type="hidden" name="accountId" th:value="${tempAccount.id}" />
+                            <button type="submit" class="btn btn-info btn-sm form-control me-2" style="float:left;">Transfer</button>
+
+                        </form>
+                    </div>
+
+                    <div class="col-auto">
+                        <form action="#" th:action="@{/accounts/delete}" method="POST">
+
+                            <input type="hidden" name="accountId" th:value="${tempAccount.id}" />
                             <button type="submit" class="btn btn-danger btn-sm"
-                                    onclick="if (!(confirm('Are you sure you want to delete this customer?'))) return false">
+                                    onclick="if (!(confirm('Are you sure you want to delete this account?'))) return false">
                                 Delete
                             </button>
 

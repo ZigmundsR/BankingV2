@@ -34,6 +34,12 @@ public class Account {
     public Account() {
     }
 
+    public Account(Customer customer,String iban) {
+        this.balance = 0;
+        this.customer = customer;
+        this.iban = iban;
+    }
+
     public int getId() {
         return id;
     }

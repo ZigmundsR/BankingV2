@@ -26,4 +26,9 @@ public class CustomerDAOImpl implements CustomerDAO{
 
         return theQuery.getResultList();
     }
+
+    @Override
+    public Customer findById(int customerId) {
+        return entityManager.find(Customer.class,customerId);
+    }
 }

@@ -1,7 +1,6 @@
 package com.banking.demo.service;
 
 
-import com.banking.demo.controller.HomePageController;
 import com.banking.demo.dao.UserDAO;
 import com.banking.demo.entity.Role;
 import com.banking.demo.entity.User;
@@ -57,5 +56,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteById(int theId) {
         userDao.deleteById(theId);
+    }
+
+    @Override
+    public User findByUserName(String userName) {
+        return userDao.findByUserName(userName);
     }
 }
